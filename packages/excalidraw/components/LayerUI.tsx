@@ -49,7 +49,7 @@ import { OverwriteConfirmDialog } from "./OverwriteConfirm/OverwriteConfirm";
 import { HandButton } from "./HandButton";
 import { isHandToolActive } from "../appState";
 import { TunnelsContext, useInitializeTunnels } from "../context/tunnels";
-import { LibraryIcon } from "./icons";
+import {eyeIcon, LibraryIcon} from "./icons";
 import { UIAppStateContext } from "../context/ui-appState";
 import { DefaultSidebar } from "./DefaultSidebar";
 import { EyeDropper, activeEyeDropperAtom } from "./EyeDropper";
@@ -102,6 +102,18 @@ const DefaultMainMenu: React.FC<{
       <MainMenu.DefaultItems.SearchMenu />
       <MainMenu.DefaultItems.Help />
       <MainMenu.DefaultItems.ClearCanvas />
+      <MainMenu.Separator />
+
+      <MainMenu.Group title="External">
+        <MainMenu.ItemLink
+          icon={eyeIcon}
+          href={`https://artfolios.net`}
+          className="highlighted"
+        >
+          Artfolios
+        </MainMenu.ItemLink>
+      </MainMenu.Group>
+
       <MainMenu.Separator />
       <MainMenu.Group title="Excalidraw links">
         <MainMenu.DefaultItems.Socials />
