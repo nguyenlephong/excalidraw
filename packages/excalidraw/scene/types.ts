@@ -109,6 +109,7 @@ export type SceneScroll = {
 };
 
 export type ExportType =
+  | "pdf"
   | "png"
   | "clipboard"
   | "clipboard-svg"

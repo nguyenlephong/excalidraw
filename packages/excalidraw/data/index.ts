@@ -25,6 +25,7 @@ import { canvasToBlob } from "./blob";
 import type { FileSystemHandle } from "./filesystem";
 import { fileSave } from "./filesystem";
 import { serializeAsJSON } from "./json";
+import { svgToPdfBlob } from "../../external/export-to-pdf";
 import { getElementsOverlappingFrame } from "../frame";
 
 export { loadFromBlob } from "./blob";
@@ -142,6 +143,26 @@ export const exportCanvas = async (
       }
       return;
     }
+  }
+
+  if(type === "pdf") {
+    const svgPromise = exportToSvg(
+      elements,
+      {
+        exportBackground,
+        exportWithDarkMode: appState.exportWithDarkMode,
+        viewBackgroundColor,
+        exportPadding,
+        exportScale: appState.exportScale,
+        exportEmbedScene: appState.exportEmbedScene && type === "pdf",
+      },
+      files,
+      { exportingFrame },
+    );
+    svgPromise.then(async (svg) => {
+      await svgToPdfBlob(svg);
+    });
+    return;
   }
 
   const tempCanvas = exportToCanvas(elements, appState, files, {
