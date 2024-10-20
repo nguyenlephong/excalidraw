@@ -1,22 +1,18 @@
-import {jsPDF} from 'jspdf';
 
 function svgToString(svg: SVGSVGElement): string {
-  const serializer = new XMLSerializer();
-  return serializer.serializeToString(svg);
+  try {
+    const serializer = new XMLSerializer();
+    return serializer.serializeToString(svg);
+  } catch (error) {
+    console.error("Error converting SVG to string:", error);
+    throw new Error("Failed to convert SVG to string");
+  }
 }
 
-// Helper function to convert SVG to PDF
 export async function svgToPdfBlob(svg: SVGSVGElement): Promise<Blob> {
-  const width = svg.width.baseVal.value;
-  const height = svg.height.baseVal.value;
-  const doc = new jsPDF({
-    orientation: "landscape",
-    unit: "px",
-    format: [width, height]
-  });
+  //@ts-ignore
+  if(window.__createPdf) window.__createPdf(svg);
 
-  doc.addSvgAsImage(svgToString(svg), 0, height, width, height);
-  doc.save('exhibitions-artfolios.pdf');
-  // Return PDF as blob
-  return doc.output('blob');
+  //@ts-ignore
+  return;
 }

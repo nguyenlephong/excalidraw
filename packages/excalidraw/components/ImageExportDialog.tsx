@@ -309,7 +309,7 @@ const ImageExportModal = ({
           </FilledButton>
           <FilledButton
             className="ImageExportModal__settings__buttons__button"
-            label={"To PDF"}
+            label={"Export To PDF"}
             // label={t("imageExportDialog.title.exportToPdf")}
             onClick={() =>
               onExportImage(EXPORT_IMAGE_TYPES.pdf, exportedElements, {

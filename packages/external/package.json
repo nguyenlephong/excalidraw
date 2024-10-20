@@ -1,6 +1,6 @@
 {
   "name": "@excalidraw/external",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "./dist/prod/index.js",
   "type": "module",
   "module": "./dist/prod/index.js",
@@ -43,7 +43,7 @@
     ]
   },
   "dependencies": {
-    "jspdf": "2.5.2"
+
   },
   "devDependencies": {},
   "bugs": "https://github.com/excalidraw/excalidraw/issues",
